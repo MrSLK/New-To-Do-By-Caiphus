@@ -1,0 +1,45 @@
+<!--Input Here-->
+  <h1>The {{title}} App</h1>
+<div class="doApp">
+
+  <label>Task Name</label>
+  <br>
+  <input type="text" placeholder="Enter Task Here" id="taskName"> 
+  <br>
+  <label>User name</label>
+  <br>
+  <input type="email" placeholder="Enter User Name Here" id="userName"> 
+  <div class="col-md-12">
+        <br>
+        <button class="btn btn-success mr-2 pl-5" type="button" (click)="onSubmit()">Submit</button>
+        <button class="btn btn-warning mr-2" type="reset" (click)="onClear()">Clear Form</button>
+        <br>
+  </div>
+  
+  <!--Display Starts Here-->
+  <br>
+  <div class="col-md-12" *ngIf="task">
+    
+        <h3>User {{user_name}} entered Task '{{task}}'</h3>
+  
+        <label>Want to update your task? ClickformControlName="control" below!</label>
+        
+        <div class="Update">
+          <label>New Task Name</label>
+          <br>
+          <input type="text" placeholder="Enter New Task Here" id="updatedTaskName">
+          
+          <button class="btn btn-primary" type="update" (click)="onUpdate()">Update Task</button>
+        </div>
+          
+          <br>
+          <label>To delete a task, click button below</label>
+          <br>
+          <button class="btn btn-danger" type="delete" (click)="onDelete()">Delete Task</button>
+  
+        
+  </div>
+   
+</div>
+
+<router-outlet></router-outlet>
