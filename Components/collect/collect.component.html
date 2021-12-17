@@ -1,40 +1,22 @@
-  <div class="doApp col-md-12">
-
-    <h1>The {{title}} App</h1>
-
-    <label>Task Name:</label>
-    <br>
-    <input type="text" placeholder="Enter Task Here" id="taskName"> 
-    <br>
-    <label>User name:</label>
-    <br>
-    <input type="email" placeholder="Enter User Name Here" id="userName"> 
-    <div class="col-md-12">
-          <br>
-          <button class="btn btn-success mr-2 pl-5" type="button" (click)="onSubmit()">Submit</button>
-          <button class="btn btn-warning mr-2" type="reset" (click)="onClear()">Clear Form</button>
-          <br>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        Task Name:
+        <input formControlName="task_name" placeholder="Enter task name">
+      </label>
     </div>
-    
-    <!--Display Starts Here-->
-    <br>
-    <div class="col-md-12" *ngIf="taskLength()">
-      
-          <h3>User '{{user_name | titlecase}}' entered task '{{task | titlecase}}' on the {{date | date: 'dd mm/yyyy'}}</h3>
-    
-          <label>Want to update your task? Enter the new task below and click the update button!</label>
-          
-          <div class="Update">
-            <label>New Task Name</label>
-            <br>
-            <input type="text" placeholder="Enter New Task Here" id="updatedTaskName">
-            
-            <button class="btn btn-primary" type="update" (click)="onUpdate()">Update Task</button>
-          </div>
-            
-            <br>
-            <label>To delete a task, click button below</label>
-            <br>
-            <button class="btn btn-danger" type="delete" (click)="onDelete()">Delete Task</button>  
+    <div>
+      <label>
+        User Name:
+        <input formControlName="user_name" placeholder="Enter user name">
+      </label>
     </div>
+    <button class="btn btn-success" type="submit">Submit</button>
+    <button class="btn btn-warning" type="clear">CLear</button>
+    
+  </form>
+
+  <div class="display">
+
+  <h4>User '{{myForm.value.user_name}}' has done task '{{myForm.value.task_name}}'</h4>
   </div>

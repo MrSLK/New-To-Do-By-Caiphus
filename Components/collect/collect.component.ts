@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-collect',
@@ -6,11 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collect.component.css']
 })
 export class CollectComponent implements OnInit {
-
-
-  constructor() { 
-  }
-
+  myFormValues:any;
+  myForm!: FormGroup;
   title = 'To-Do';
   task: string = "";
   test!:boolean;
@@ -18,7 +16,20 @@ export class CollectComponent implements OnInit {
   user_name: any = "";
   clicked: boolean = false;
   date: Date = new Date();
-  isValid!: boolean; 
+  isValid!: boolean;
+
+  constructor() { 
+  }
+
+
+  ngOnInit(): void { 
+
+    this.myForm = new FormGroup({
+      task_name: new FormControl(''),
+      user_name: new FormControl('')
+    });
+  }
+
 
   taskLength(): boolean  {
     if(this.task == "" && this.user_name == ""){
@@ -28,23 +39,17 @@ export class CollectComponent implements OnInit {
     }
     return this.test;
   }
-
-  ngOnInit(): void { 
-  }
-
   
-  onSubmit(): void {
-    this.task = (<HTMLInputElement>document.getElementById('taskName')).value;
-    console.log(this.task);
-    this.user_name = (<HTMLInputElement>document.getElementById('userName')).value;
-    console.log(this.user_name);
-    this.clicked = true;
-    this.taskLength();
+  onSubmit() {
+  console.log(this.myForm.value);
+  
+
   }
 
   onClear(): void {
-    (<HTMLInputElement>document.getElementById('taskName')).value = "";
-    (<HTMLInputElement>document.getElementById('userName')).value = "";
+    this.myForm.value.task_name = "";
+    this.myForm.value.user_name = "";
+    
   }
 
   onDelete(): void {
